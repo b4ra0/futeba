@@ -1,0 +1,14 @@
+#!/bin/bash
+
+CONTAINER_PHP="php_idrip"
+PHP_VERSAO=8.1
+
+PARAMS=$@
+
+if [[ $PARAMS == tinker* ]]; then
+    docker exec -ti $CONTAINER_PHP php artisan $PARAMS
+elif [[ $PARAMS == make:* ]] || [[ $PARAMS == vendor:publish* ]] || [[ $PARAMS == datatable:make* ]]; then
+    docker run --rm --user $(id -u):$(id -g) -v $(pwd):/app -w /app -ti  php:$PHP_VERSAO-cli php artisan $PARAMS
+else
+    docker exec $CONTAINER_PHP php artisan $PARAMS
+fi
