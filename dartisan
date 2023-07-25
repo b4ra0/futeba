@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTAINER_PHP="php_idrip"
+CONTAINER_PHP="php_futeba"
 PHP_VERSAO=8.1
 
 PARAMS=$@

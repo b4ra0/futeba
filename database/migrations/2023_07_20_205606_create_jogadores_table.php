@@ -17,6 +17,16 @@ return new class extends Migration
             $table->string('posição');
             $table->timestamps();
         });
+
+        Schema::create('jogadores_elencos', function (Blueprint $table) {
+            $table->id();
+            $table->integer('id_jogador');
+            $table->integer('id_elenco');
+            $table->timestamps();
+
+            $table->foreign('id_jogador')->references('id')->on('jogadores');
+            $table->foreign('id_elenco')->references('id')->on('elencos');
+        });
     }
 
     /**
@@ -24,6 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jogadors');
+        Schema::dropIfExists('jogadores');
+        Schema::dropIfExists('jogadores_elencos');
     }
 };

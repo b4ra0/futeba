@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('elencos', function (Blueprint $table) {
             $table->id();
-            $table->integer('time_id');
-            $table->integer('temporada_id');
-            $table->integer('jogador_id');
+            $table->integer('id_time');
+            $table->integer('id_temporada');
+            $table->integer('id_jogador');
             $table->timestamps();
 
-            $table->foreign('time_id')->references('id')->on('times');
-            $table->foreign('temporada_id')->references('id')->on('temporadas');
-            $table->foreign('jogador_id')->references('id')->on('jogadores');
+            $table->foreign('id_time')->references('id')->on('times');
+            $table->foreign('id_temporada')->references('id')->on('temporadas');
+            $table->foreign('id_jogador')->references('id')->on('jogadores');
         });
     }
 

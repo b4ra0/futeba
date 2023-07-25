@@ -4,7 +4,7 @@ services:
 
   laravel-app:
     build: ./.docker/nginx
-    container_name: nginx_idrip
+    container_name: nginx_futeba
     ports:
       - "8000:80"
     volumes:
@@ -18,7 +18,7 @@ services:
         uid: 1000
       context: ./.docker/php
       dockerfile: Dockerfile
-    container_name: php_idrip
+    container_name: php_futeba
     restart: unless-stopped
     ports:
       - "8001:81"
@@ -27,7 +27,7 @@ services:
 
   postgres:
     build: ./.docker/postgres
-    container_name: postgres_idrip
+    container_name: postgres_futeba
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: senha
