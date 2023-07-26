@@ -14,10 +14,17 @@ return new class extends Migration
         Schema::create('times', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->integer('liga_id');
+            $table->timestamps();
+        });
+
+        Schema::create('ligas_times', function (Blueprint $table){
+            $table->id();
+            $table->integer('id_time');
+            $table->integer('id_liga');
             $table->timestamps();
 
-            $table->foreign('liga_id')->references('id')->on('ligas');
+            $table->foreign('id_time')->references('id')->on('times');
+            $table->foreign('id_liga')->references('id')->on('ligas');
         });
     }
 
@@ -26,6 +33,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('ligas_times', function (Blueprint $table) {
+            $table->dropForeign(['id_time']);
+            $table->dropForeign(['id_liga']);
+        });
+
         Schema::dropIfExists('times');
+        Schema::dropIfExists('ligas_times');
     }
 };

@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('id_time');
             $table->integer('id_temporada');
-            $table->integer('id_jogador');
             $table->timestamps();
 
             $table->foreign('id_time')->references('id')->on('times');
             $table->foreign('id_temporada')->references('id')->on('temporadas');
-            $table->foreign('id_jogador')->references('id')->on('jogadores');
         });
     }
 
