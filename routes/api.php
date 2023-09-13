@@ -21,5 +21,6 @@ Route::controller(TimeController::class)->group(function () {
     Route::get('times', 'index');
     Route::post('times', 'store');
     Route::get('times/{id}', 'show');
+    Route::put('times/{id}', 'update');
     Route::delete('times/{id}', 'destroy');
 });

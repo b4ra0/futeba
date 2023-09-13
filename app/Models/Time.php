@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Time extends Model
 {
+    protected $fillable = ['nome', 'url_brasao'];
+
     use HasFactory;
     public function jogadores () {
         return $this->hasMany(Elenco::class);

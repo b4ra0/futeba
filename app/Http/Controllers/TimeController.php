@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\StoreTimeRequest;
-use App\Http\Requests\UpdateTimeRequest;
 use App\Models\Time;
+use Illuminate\Http\Request;
 
 class TimeController extends Controller
 {
@@ -13,54 +11,60 @@ class TimeController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $times = Time::all();
+        return response()->json($times);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTimeRequest $request)
+    public function store(Request $request)
     {
-        //
+        $dados = $request->validate(
+            [
+                'nome' => 'required',
+                'url_brasao' => 'required',
+            ]
+        );
+
+        $time = Time::create($dados);
+
+        return response()->json($time);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Time $time)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Time $time)
-    {
-        //
+        $time = Time::find($id);
+        return response()->json($time);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTimeRequest $request, Time $time)
+    public function update($id, Request $request)
     {
-        //
+        $dados = $request->validate(
+            [
+                'nome' => 'string',
+                'url_brasao' => 'string',
+            ]
+        );
+
+        $time = Time::find($id);
+        $time->update($dados);
+
+        return response()->json($time);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Time $time)
+    public function destroy($idTime)
     {
-        //
+        Time::destroy($idTime);
+        return response()->json(['msg' => 'Time deletado com sucesso']);
     }
 }
