@@ -13,15 +13,8 @@ class PaisController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $paises = Pais::all();
+        return response()->json($paises);
     }
 
     /**
@@ -29,7 +22,16 @@ class PaisController extends Controller
      */
     public function store(StorePaisRequest $request)
     {
-        //
+        $dados = $request->validate(
+            [
+                'nome' => 'required',
+                'sigla' => 'required',
+            ]
+        );
+
+        $pais = Pais::create($dados);
+
+        return response()->json($dados);
     }
 
     /**

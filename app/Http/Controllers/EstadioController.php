@@ -13,15 +13,8 @@ class EstadioController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $estadios = Estadio::all();
+        return response()->json($estadios);
     }
 
     /**
