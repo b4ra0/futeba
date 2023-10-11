@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLigaRequest;
-use App\Http\Requests\UpdateLigaRequest;
-use App\Models\Liga;
+use App\Http\Requests\StoreCampeonatoRequest;
+use App\Http\Requests\UpdateCampeonatoRequest;
+use App\Models\Campeonato;
 
-class LigaController extends Controller
+class CampeonatoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class LigaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLigaRequest $request)
+    public function store(StoreCampeonatoRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class LigaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Liga $liga)
+    public function show(Campeonato $liga)
     {
         //
     }
@@ -43,7 +43,7 @@ class LigaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Liga $liga)
+    public function edit(Campeonato $liga)
     {
         //
     }
@@ -51,7 +51,7 @@ class LigaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLigaRequest $request, Liga $liga)
+    public function update(UpdateCampeonatoRequest $request, Campeonato $liga)
     {
         //
     }
@@ -59,7 +59,7 @@ class LigaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Liga $liga)
+    public function destroy(Campeonato $liga)
     {
         //
     }

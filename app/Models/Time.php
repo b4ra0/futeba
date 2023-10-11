@@ -21,7 +21,7 @@ class Time extends Model
         return $this->hasMany(Tecnico::class);
     }
 
-    public function ligas () {
-        return $this->belongsToMany(Liga::class, 'ligas_times', 'time_id', 'liga_id');
+    public function campeonatos () {
+        return $this->belongsToMany(Campeonato::class, 'time_campeonato_temporada', 'id_time', 'id_campeonato');
     }
 }

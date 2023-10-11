@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Liga;
+use App\Models\Campeonato;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class LigaPolicy
+class CampeonatoPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class LigaPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Liga $liga): bool
+    public function view(User $user, Campeonato $liga): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class LigaPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Liga $liga): bool
+    public function update(User $user, Campeonato $liga): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class LigaPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Liga $liga): bool
+    public function delete(User $user, Campeonato $liga): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class LigaPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Liga $liga): bool
+    public function restore(User $user, Campeonato $liga): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class LigaPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Liga $liga): bool
+    public function forceDelete(User $user, Campeonato $liga): bool
     {
         //
     }

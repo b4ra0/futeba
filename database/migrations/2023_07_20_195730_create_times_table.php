@@ -17,16 +17,6 @@ return new class extends Migration
             $table->string('url_brasao');
             $table->timestamps();
         });
-
-        Schema::create('ligas_times', function (Blueprint $table){
-            $table->id();
-            $table->integer('id_time');
-            $table->integer('id_liga');
-            $table->timestamps();
-
-            $table->foreign('id_time')->references('id')->on('times');
-            $table->foreign('id_liga')->references('id')->on('ligas');
-        });
     }
 
     /**
@@ -34,12 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('ligas_times', function (Blueprint $table) {
-            $table->dropForeign(['id_time']);
-            $table->dropForeign(['id_liga']);
-        });
-
         Schema::dropIfExists('times');
-        Schema::dropIfExists('ligas_times');
     }
 };
