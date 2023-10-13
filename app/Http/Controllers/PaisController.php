@@ -31,38 +31,42 @@ class PaisController extends Controller
 
         $pais = Pais::create($dados);
 
-        return response()->json($dados);
+        return response()->json($pais);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Pais $pais)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pais $pais)
-    {
-        //
+        $pais = Pais::find($id);
+        return response()->json($pais);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePaisRequest $request, Pais $pais)
+    public function update($id, UpdatePaisRequest $request)
     {
-        //
+        $dados = $request->validate(
+            [
+                'nome' => 'string',
+                'sigla' => 'string',
+            ]
+        );
+
+        $pais = Pais::find($id);
+        $pais->update($dados);
+
+        return response()->json($pais);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pais $pais)
+    public function destroy($id)
     {
-        //
+        Pais::destroy($id);
+        return response()->json(['msg' => 'Pais deletado com sucesso']);
     }
 }

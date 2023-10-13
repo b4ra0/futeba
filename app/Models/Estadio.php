@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Estadio extends Model
 {
@@ -12,18 +13,16 @@ class Estadio extends Model
     protected $fillable = [
         'nome',
         'cidade',
-        'id_time',
         'id_pais',
         'capacidade'
     ];
-
     public function pais()
     {
-        return $this->belongsTo(Pais::class);
+        return $this->belongsTo(Pais::class, 'id_pais');
     }
 
     public function time()
     {
-        return $this->belongsTo(Time::class);
+        return $this->belongsToMany(Time::class, 'estadio_time');
     }
 }

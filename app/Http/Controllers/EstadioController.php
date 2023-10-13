@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEstadioRequest;
 use App\Http\Requests\UpdateEstadioRequest;
 use App\Models\Estadio;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EstadioController extends Controller
 {
@@ -22,38 +24,56 @@ class EstadioController extends Controller
      */
     public function store(StoreEstadioRequest $request)
     {
-        //
+        $dados = $request->validate(
+            [
+                'nome' => 'required',
+                'cidade' => 'required',
+                'id_pais' => 'required|integer|exists:paises,id',
+                'capacidade' => 'required|integer'
+            ]
+        );
+
+        $estadio = Estadio::create($dados);
+
+        return response()->json($estadio, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Estadio $estadio)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Estadio $estadio)
-    {
-        //
+        $estadio = Estadio::with('pais')->find($id);
+        return response()->json($estadio);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEstadioRequest $request, Estadio $estadio)
+    public function update($id, Request $request)
     {
-        //
+        $dados = $request->validate(
+            [
+                'nome' => 'string',
+                'cidade' => 'string',
+                'id_pais' => 'integer|exists:paises,id',
+                'capacidade' => 'integer'
+            ]
+        );
+
+        $estadio = Estadio::find($id);
+        $estadio->update($dados);
+
+        return response()->json($estadio);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Estadio $estadio)
+    public function destroy($id)
     {
-        //
+        Estadio::destroy($id);
+        return response()->json(['msg' => 'Estádio deletado com sucesso']);
     }
 }
