@@ -21,8 +21,8 @@ class Estadio extends Model
         return $this->belongsTo(Pais::class, 'id_pais');
     }
 
-    public function time()
+    public function times()
     {
-        return $this->belongsToMany(Time::class, 'estadio_time');
+        return $this->belongsToMany(Time::class, 'estadio_time', 'id_estadio', 'id_time');
     }
 }

@@ -29,11 +29,16 @@ class EstadioController extends Controller
                 'nome' => 'required',
                 'cidade' => 'required',
                 'id_pais' => 'required|integer|exists:paises,id',
-                'capacidade' => 'required|integer'
+                'capacidade' => 'required|integer',
+                'id_time' => 'integer|exists:times,id'
             ]
         );
 
         $estadio = Estadio::create($dados);
+
+        if(isset($dados['id_time'])) {
+            $estadio->times()->sync($dados['id_time']);
+        }
 
         return response()->json($estadio, 201);
     }
@@ -43,7 +48,7 @@ class EstadioController extends Controller
      */
     public function show($id)
     {
-        $estadio = Estadio::with('pais')->find($id);
+        $estadio = Estadio::with(['pais', 'times'])->find($id);
         return response()->json($estadio);
     }
 
@@ -57,11 +62,15 @@ class EstadioController extends Controller
                 'nome' => 'string',
                 'cidade' => 'string',
                 'id_pais' => 'integer|exists:paises,id',
-                'capacidade' => 'integer'
+                'capacidade' => 'integer',
+                'id_time' => 'integer|exists:times,id'
             ]
         );
 
         $estadio = Estadio::find($id);
+        if(isset($dados['id_time'])) {
+            $estadio->times()->sync($dados['id_time']);
+        }
         $estadio->update($dados);
 
         return response()->json($estadio);

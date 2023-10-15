@@ -37,7 +37,7 @@ class TimeController extends Controller
      */
     public function show($id)
     {
-        $time = Time::find($id);
+        $time = Time::with('estadios')->find($id);
         return response()->json($time);
     }
 
