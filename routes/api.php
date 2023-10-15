@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EstadioController;
 use App\Http\Controllers\PaisController;
+use App\Http\Controllers\PartidaController;
 use App\Http\Controllers\TimeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,4 +41,12 @@ Route::controller(PaisController::class)->group(function () {
     Route::get('pais/{id}', 'show');
     Route::put('pais/{id}', 'update');
     Route::delete('pais/{id}', 'destroy');
+});
+
+Route::controller(PartidaController::class)->group(function () {
+    Route::get('partidas', 'index');
+    Route::post('partidas', 'store');
+    Route::get('partidas/{id}', 'show');
+    Route::put('partidas/{id}', 'update');
+    Route::delete('partidas/{id}', 'destroy');
 });
