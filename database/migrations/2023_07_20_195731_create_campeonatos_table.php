@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->timestamps();
-
         });
 
         Schema::create('pais_campeonato', function (Blueprint $table) {

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('arbitro_id');
             $table->integer('gols_mandante');
             $table->integer('gols_visitante');
+            $table->date('data');
             $table->timestamps();
 
             $table->foreign('temporada_id')->references('id')->on('temporadas');

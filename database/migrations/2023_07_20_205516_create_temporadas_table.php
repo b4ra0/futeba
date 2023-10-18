@@ -13,20 +13,8 @@ return new class extends Migration
     {
         Schema::create('temporadas', function (Blueprint $table) {
             $table->id();
-            $table->string('ano');
+            $table->string('temporada');
             $table->timestamps();
-        });
-
-        Schema::create('time_campeonato_temporada', function (Blueprint $table){
-            $table->id();
-            $table->integer('id_time');
-            $table->integer('id_temporada');
-            $table->integer('id_campeonato');
-            $table->timestamps();
-
-            $table->foreign('id_time')->references('id')->on('times');
-            $table->foreign('id_campeonato')->references('id')->on('campeonatos');
-            $table->foreign('id_temporada')->references('id')->on('temporadas');
         });
     }
 
@@ -35,12 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('time_campeonato_temporada', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('id_time');
-            $table->dropConstrainedForeignId('id_campeonato');
-            $table->dropConstrainedForeignId('id_temporada');
-        });
-        Schema::dropIfExists('time_campeonato_temporada');
         Schema::dropIfExists('temporadas');
     }
 };
