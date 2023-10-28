@@ -22,12 +22,7 @@ class PaisController extends Controller
      */
     public function store(StorePaisRequest $request)
     {
-        $dados = $request->validate(
-            [
-                'nome' => 'required',
-                'sigla' => 'required',
-            ]
-        );
+        $dados = $request->validated();
 
         $pais = Pais::create($dados);
 
@@ -48,12 +43,7 @@ class PaisController extends Controller
      */
     public function update($id, UpdatePaisRequest $request)
     {
-        $dados = $request->validate(
-            [
-                'nome' => 'string',
-                'sigla' => 'string',
-            ]
-        );
+        $dados = $request->validated();
 
         $pais = Pais::find($id);
         $pais->update($dados);

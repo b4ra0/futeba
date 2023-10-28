@@ -22,7 +22,17 @@ class UpdatePaisRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome' => 'string',
+            'sigla' => 'string|max:3',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nome.string' => 'Campo nome inválido',
+            'sigla.string' => 'Campo sigla inválido',
+            'sigla.max' => 'O campo sigla deve ter no máximo 3 caracteres',
         ];
     }
 }
