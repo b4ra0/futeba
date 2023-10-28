@@ -11,7 +11,7 @@ class UpdateCampeonatoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateCampeonatoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome' => 'string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nome.string' => 'O campo nome é inválido',
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CampeonatoController;
 use App\Http\Controllers\EstadioController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\PartidaController;
@@ -49,4 +50,12 @@ Route::controller(PartidaController::class)->group(function () {
     Route::get('partidas/{id}', 'show');
     Route::put('partidas/{id}', 'update');
     Route::delete('partidas/{id}', 'destroy');
+});
+
+Route::controller(CampeonatoController::class)->group(function () {
+    Route::get('campeonatos', 'index');
+    Route::post('campeonatos', 'store');
+    Route::get('campeonatos/{id}', 'show');
+    Route::put('campeonatos/{id}', 'update');
+    Route::delete('campeonatos/{id}', 'destroy');
 });

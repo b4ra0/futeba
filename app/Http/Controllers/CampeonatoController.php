@@ -13,15 +13,8 @@ class CampeonatoController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $campeonatos = Campeonato::all();
+        return response()->json($campeonatos);
     }
 
     /**
@@ -29,38 +22,40 @@ class CampeonatoController extends Controller
      */
     public function store(StoreCampeonatoRequest $request)
     {
-        //
+        $dados = $request->validated();
+
+        $campeonato = Campeonato::create($dados);
+        return response()->json($campeonato, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Campeonato $liga)
+    public function show($id, Campeonato $liga)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Campeonato $liga)
-    {
-        //
+        $campeonato = Campeonato::find($id);
+        return response()->json($campeonato);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCampeonatoRequest $request, Campeonato $liga)
+    public function update($id, UpdateCampeonatoRequest $request, Campeonato $liga)
     {
-        //
+        $dados = $request->validated();
+
+        $campeonato = Campeonato::find($id);
+        $campeonato->update($dados);
+
+        return response()->json($campeonato);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Campeonato $liga)
+    public function destroy($id, Campeonato $liga)
     {
-        //
+        Campeonato::destroy($id);
+        return response()->json(['msg' => 'Campeonato deletado com sucesso']);
     }
 }

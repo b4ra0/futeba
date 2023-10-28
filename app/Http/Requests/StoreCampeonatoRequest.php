@@ -11,7 +11,7 @@ class StoreCampeonatoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class StoreCampeonatoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome' => 'required|string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nome.required' => 'O campo nome é obrigatório',
+            'nome.string' => 'O campo nome é inválido',
         ];
     }
 }
