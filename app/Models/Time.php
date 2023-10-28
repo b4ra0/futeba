@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Time extends Model
 {
-    protected $fillable = ['nome', 'url_brasao'];
+    protected $fillable = ['nome', 'url_brasao', 'fundacao'];
 
     use HasFactory;
 //    public function jogadores () {

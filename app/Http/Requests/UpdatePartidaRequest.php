@@ -22,7 +22,19 @@ class UpdatePartidaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'edicao_id' => 'integer|exists:edicoes,id',
+            'time_visitante_id' => 'integer|exists:times,id',
+            'time_mandante_id' => 'integer|exists:times,id',
+            'estadio_id' => 'integer|exists:estadios,id',
+            'arbitro_id' => 'integer|exists:arbitros,id',
+            'gols_mandante' => 'integer',
+            'gols_visitante' => 'integer',
+            'data' => 'date',
         ];
+    }
+
+    public function messages()
+    {
+        return [];
     }
 }

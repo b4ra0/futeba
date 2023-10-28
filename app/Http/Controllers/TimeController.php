@@ -24,6 +24,7 @@ class TimeController extends Controller
             [
                 'nome' => 'required',
                 'url_brasao' => 'required',
+                'fundacao' => 'required|date'
             ]
         );
 

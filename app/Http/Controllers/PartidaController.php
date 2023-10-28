@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePartidaRequest;
 use App\Http\Requests\UpdatePartidaRequest;
 use App\Models\Partida;
+use Illuminate\Support\Facades\Log;
 
 class PartidaController extends Controller
 {
@@ -22,17 +23,7 @@ class PartidaController extends Controller
      */
     public function store(StorePartidaRequest $request)
     {
-        $dados = $request->validate(
-            [
-                'temporada_id' => 'required|integer|exists:temporadas,id',
-                'time_visitante_id' => 'required|integer|exists:times,id',
-                'time_mandante_id' => 'required|integer|exists:times,id',
-                'estadio_id' => 'required|integer|exists:estadios,id',
-                'arbitro_id' => 'required|integer|exists:arbitros,id',
-                'gols_mandante' => 'required|integer',
-                'gols_visitante' => 'required|integer',
-            ]
-        );
+        $dados = $request->validated();
 
         $partida = Partida::create($dados);
 
@@ -53,17 +44,7 @@ class PartidaController extends Controller
      */
     public function update($id, UpdatePartidaRequest $request)
     {
-        $dados = $request->validate(
-            [
-                'temporada_id' => 'integer|exists:temporadas,id',
-                'time_visitante_id' => 'integer|exists:times,id',
-                'time_mandante_id' => 'integer|exists:times,id',
-                'estadio_id' => 'integer|exists:estadios,id',
-                'arbitro_id' => 'integer|exists:arbitros,id',
-                'gols_mandante' => 'integer',
-                'gols_visitante' => 'integer',
-            ]
-        );
+        $dados = $request->validated();
         $partida = Partida::find($id);
         $partida->update($dados);
 
