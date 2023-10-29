@@ -22,7 +22,9 @@ class UpdateCampeonatoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'string'
+            'nome' => 'string',
+            'id_pais' => 'array',
+            'id_pais.*' => 'exists:paises,id'
         ];
     }
 
@@ -30,6 +32,7 @@ class UpdateCampeonatoRequest extends FormRequest
     {
         return [
             'nome.string' => 'O campo nome é inválido',
+            'id_pais.array' => 'O campo id_pais é inválido'
         ];
     }
 }

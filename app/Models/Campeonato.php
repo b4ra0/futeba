@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Campeonato extends Model
 {
@@ -12,4 +13,10 @@ class Campeonato extends Model
     protected $fillable = [
         'nome'
     ];
+
+
+    public function paises(): BelongsToMany
+    {
+        return $this->belongsToMany(Pais::class, 'pais_campeonato', 'id_campeonato', 'id_pais',);
+    }
 }

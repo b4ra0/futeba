@@ -22,7 +22,9 @@ class StoreCampeonatoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|string'
+            'nome' => 'required|string',
+            'id_pais' => 'array',
+            'id_pais.*' => 'exists:paises,id'
         ];
     }
 
@@ -31,6 +33,7 @@ class StoreCampeonatoRequest extends FormRequest
         return [
             'nome.required' => 'O campo nome é obrigatório',
             'nome.string' => 'O campo nome é inválido',
+            'id_pais.array' => 'O campo id_pais é inválido'
         ];
     }
 }

@@ -25,6 +25,9 @@ class CampeonatoController extends Controller
         $dados = $request->validated();
 
         $campeonato = Campeonato::create($dados);
+        if(isset($dados['id_pais'])) {
+            $campeonato->paises()->sync($dados['id_pais']);
+        }
         return response()->json($campeonato, 201);
     }
 
@@ -33,7 +36,7 @@ class CampeonatoController extends Controller
      */
     public function show($id, Campeonato $liga)
     {
-        $campeonato = Campeonato::find($id);
+        $campeonato = Campeonato::with('paises')->find($id);
         return response()->json($campeonato);
     }
 
@@ -45,6 +48,9 @@ class CampeonatoController extends Controller
         $dados = $request->validated();
 
         $campeonato = Campeonato::find($id);
+        if(isset($dados['id_pais'])) {
+            $campeonato->paises()->sync($dados['id_pais']);
+        }
         $campeonato->update($dados);
 
         return response()->json($campeonato);
