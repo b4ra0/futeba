@@ -38,6 +38,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('edicao_clube');
         Schema::dropIfExists('edicoes');
     }
 };

@@ -13,7 +13,7 @@ class CampeonatoController extends Controller
      */
     public function index()
     {
-        $campeonatos = Campeonato::all();
+        $campeonatos = Campeonato::with('edicoes')->get();
         return response()->json($campeonatos);
     }
 

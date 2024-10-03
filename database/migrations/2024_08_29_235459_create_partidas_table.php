@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('partidas', function (Blueprint $table) {
             $table->id();
-            $table->integer('temporada_id');
-            $table->integer('time_mandante_id');
-            $table->integer('time_visitante_id');
-            $table->integer('estadio_id');
-            $table->integer('arbitro_id');
+            $table->integer('id_time_mandante');
+            $table->integer('id_time_visitante');
+            $table->integer('id_estadio');
+            $table->integer('id_arbitro');
+            $table->integer('id_fase');
             $table->integer('gols_mandante');
             $table->integer('gols_visitante');
             $table->date('data');
             $table->timestamps();
 
-            $table->foreign('temporada_id')->references('id')->on('temporadas');
-            $table->foreign('time_mandante_id')->references('id')->on('times');
-            $table->foreign('time_visitante_id')->references('id')->on('times');
-            $table->foreign('estadio_id')->references('id')->on('estadios');
-            $table->foreign('arbitro_id')->references('id')->on('arbitros');
+            $table->foreign('id_time_mandante')->references('id')->on('times');
+            $table->foreign('id_time_visitante')->references('id')->on('times');
+            $table->foreign('id_estadio')->references('id')->on('estadios');
+            $table->foreign('id_arbitro')->references('id')->on('arbitros');
+            $table->foreign('id_fase')->references('id')->on('fases');
         });
     }
 

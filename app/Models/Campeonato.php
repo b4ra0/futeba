@@ -19,4 +19,9 @@ class Campeonato extends Model
     {
         return $this->belongsToMany(Pais::class, 'pais_campeonato', 'id_campeonato', 'id_pais',);
     }
+
+    public function edicoes()
+    {
+        return $this->hasMany(Edicao::class, 'id_campeonato', 'id');
+    }
 }
