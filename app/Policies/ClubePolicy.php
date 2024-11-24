@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Time;
+use App\Models\Clube;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class TimePolicy
+class ClubePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class TimePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Time $time): bool
+    public function view(User $user, Clube $clube): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class TimePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Time $time): bool
+    public function update(User $user, Clube $clube): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class TimePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Time $time): bool
+    public function delete(User $user, Clube $clube): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class TimePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Time $time): bool
+    public function restore(User $user, Clube $clube): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class TimePolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Time $time): bool
+    public function forceDelete(User $user, Clube $clube): bool
     {
         //
     }

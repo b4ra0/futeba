@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTecnicoRequest;
-use App\Http\Requests\UpdateTecnicoRequest;
-use App\Models\Tecnico;
+use App\Http\Requests\StoreTransferenciaRequest;
+use App\Http\Requests\UpdateTransferenciaRequest;
+use App\Models\Transferencia;
 
-class TecnicoController extends Controller
+class TransferenciaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class TecnicoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTecnicoRequest $request)
+    public function store(StoreTransferenciaRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class TecnicoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tecnico $tecnico)
+    public function show(Transferencia $transferencia)
     {
         //
     }
@@ -43,7 +43,7 @@ class TecnicoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tecnico $tecnico)
+    public function edit(Transferencia $transferencia)
     {
         //
     }
@@ -51,7 +51,7 @@ class TecnicoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTecnicoRequest $request, Tecnico $tecnico)
+    public function update(UpdateTransferenciaRequest $request, Transferencia $transferencia)
     {
         //
     }
@@ -59,7 +59,7 @@ class TecnicoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tecnico $tecnico)
+    public function destroy(Transferencia $transferencia)
     {
         //
     }

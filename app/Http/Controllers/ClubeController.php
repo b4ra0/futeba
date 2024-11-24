@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTemporadaRequest;
-use App\Http\Requests\UpdateTemporadaRequest;
-use App\Models\Temporada;
+use App\Http\Requests\StoreClubeRequest;
+use App\Http\Requests\UpdateClubeRequest;
+use App\Models\Clube;
 
-class TemporadaController extends Controller
+class ClubeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class TemporadaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTemporadaRequest $request)
+    public function store(StoreClubeRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class TemporadaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Temporada $temporada)
+    public function show(Clube $clube)
     {
         //
     }
@@ -43,7 +43,7 @@ class TemporadaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Temporada $temporada)
+    public function edit(Clube $clube)
     {
         //
     }
@@ -51,7 +51,7 @@ class TemporadaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTemporadaRequest $request, Temporada $temporada)
+    public function update(UpdateClubeRequest $request, Clube $clube)
     {
         //
     }
@@ -59,7 +59,7 @@ class TemporadaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Temporada $temporada)
+    public function destroy(Clube $clube)
     {
         //
     }

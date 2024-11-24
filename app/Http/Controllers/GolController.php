@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreElencoRequest;
-use App\Http\Requests\UpdateElencoRequest;
-use App\Models\Elenco;
+use App\Http\Requests\StoreGolRequest;
+use App\Http\Requests\UpdateGolRequest;
+use App\Models\Gol;
 
-class ElencoController extends Controller
+class GolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ElencoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreElencoRequest $request)
+    public function store(StoreGolRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ElencoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Elenco $elenco)
+    public function show(Gol $gol)
     {
         //
     }
@@ -43,7 +43,7 @@ class ElencoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Elenco $elenco)
+    public function edit(Gol $gol)
     {
         //
     }
@@ -51,7 +51,7 @@ class ElencoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateElencoRequest $request, Elenco $elenco)
+    public function update(UpdateGolRequest $request, Gol $gol)
     {
         //
     }
@@ -59,7 +59,7 @@ class ElencoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Elenco $elenco)
+    public function destroy(Gol $gol)
     {
         //
     }

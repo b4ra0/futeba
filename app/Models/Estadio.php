@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Estadio extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'nome',
