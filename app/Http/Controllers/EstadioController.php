@@ -24,21 +24,9 @@ class EstadioController extends Controller
      */
     public function store(StoreEstadioRequest $request)
     {
-        $dados = $request->validate(
-            [
-                'nome' => 'required',
-                'cidade' => 'required',
-                'id_pais' => 'required|integer|exists:paises,id',
-                'capacidade' => 'required|integer',
-                'id_time' => 'integer|exists:times,id'
-            ]
-        );
+        $dados = $request->validated();
 
         $estadio = Estadio::create($dados);
-
-        if(isset($dados['id_time'])) {
-            $estadio->times()->sync($dados['id_time']);
-        }
 
         return response()->json($estadio, 201);
     }
@@ -48,29 +36,18 @@ class EstadioController extends Controller
      */
     public function show($id)
     {
-        $estadio = Estadio::with(['pais', 'times'])->find($id);
+        $estadio = Estadio::with(['pais', 'clubes'])->find($id);
         return response()->json($estadio);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update($id, Request $request)
+    public function update($id, UpdateEstadioRequest $request)
     {
-        $dados = $request->validate(
-            [
-                'nome' => 'string',
-                'cidade' => 'string',
-                'id_pais' => 'integer|exists:paises,id',
-                'capacidade' => 'integer',
-                'id_time' => 'integer|exists:times,id'
-            ]
-        );
+        $dados = $request->validated();
 
         $estadio = Estadio::find($id);
-        if(isset($dados['id_time'])) {
-            $estadio->times()->sync($dados['id_time']);
-        }
         $estadio->update($dados);
 
         return response()->json($estadio);

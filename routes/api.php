@@ -37,11 +37,11 @@ Route::controller(EstadioController::class)->group(function () {
 });
 
 Route::controller(PaisController::class)->group(function () {
-    Route::get('pais', 'index');
-    Route::post('pais', 'store');
-    Route::get('pais/{id}', 'show');
-    Route::put('pais/{id}', 'update');
-    Route::delete('pais/{id}', 'destroy');
+    Route::get('paises', 'index');
+    Route::post('paises', 'store');
+    Route::get('paises/{id}', 'show');
+    Route::put('paises/{id}', 'update');
+    Route::delete('paises/{id}', 'destroy');
 });
 
 Route::controller(PartidaController::class)->group(function () {

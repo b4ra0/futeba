@@ -22,7 +22,9 @@ class UpdateEstadioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome' => 'required',
+            'apelido' => 'required|string',
+            'id_pais' => 'required|integer|exists:paises,id',
         ];
     }
 }
