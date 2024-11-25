@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string("nome");
             $table->string('sigla', 3);
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela Campeonatos
@@ -23,6 +25,8 @@ return new class extends Migration
             $table->id();
             $table->string("nome");
             $table->string('sigla', 3);
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela rl_pais_campeonato
@@ -40,6 +44,8 @@ return new class extends Migration
             $table->string('logo_path');
             $table->unsignedBigInteger('id_campeonato');
             $table->unsignedBigInteger('id_campeao');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela fases
@@ -51,6 +57,8 @@ return new class extends Migration
             $table->boolean("eliminatoria");
             $table->boolean("ida_e_volta");
             $table->unsignedBigInteger('id_edicao');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela rl_edição_clube
@@ -66,6 +74,8 @@ return new class extends Migration
             $table->string("nome_completo");
             $table->string('nome_popular');
             $table->date('fundacao');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela rl_estadio_clube
@@ -82,6 +92,8 @@ return new class extends Migration
             $table->string("nome");
             $table->string("apelido");
             $table->unsignedBigInteger('id_pais');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela partidas
@@ -94,6 +106,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_visitante');
             $table->unsignedBigInteger('id_estadio');
             $table->unsignedBigInteger('id_fase');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela rl_jogador_partida
@@ -113,6 +127,8 @@ return new class extends Migration
             $table->date('data_de_nascimento');
             $table->enum('posicao', ['goleiro', 'zagueiro', 'lateral', 'volante', 'meia', 'atacante']);
             $table->unsignedBigInteger('id_pais');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela rl_clube_jogador
@@ -129,6 +145,8 @@ return new class extends Migration
             $table->enum('tipo', ['cabeca', 'penalti', 'falta', 'chute', 'olimpico', 'contra']);
             $table->unsignedBigInteger('id_partida');
             $table->unsignedBigInteger('id_jogador');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela transferencias
@@ -139,12 +157,16 @@ return new class extends Migration
             $table->unsignedBigInteger('id_clube_chegada')->nullable();
             $table->enum('tipo', ['transferencia', 'emprestimo', 'livre']);
             $table->float('valor');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela arbitros
         Schema::create('arbitros', function (Blueprint $table) {
             $table->id();
             $table->string('nome_completo');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         // Tabela rl_arbitro_partida
@@ -265,6 +287,10 @@ return new class extends Migration
         Schema::table('transferencias', function (Blueprint $table) {
             $table->dropConstrainedForeignId('id_clube_saida');
             $table->dropConstrainedForeignId('id_clube_chegada');
+        });
+        Schema::table('arbitro_partida', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('id_arbitro');
+            $table->dropConstrainedForeignId('id_partida');
         });
 
 
