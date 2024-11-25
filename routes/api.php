@@ -4,7 +4,7 @@ use App\Http\Controllers\CampeonatoController;
 use App\Http\Controllers\EstadioController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\PartidaController;
-use App\Http\Controllers\TimeController;
+use App\Http\Controllers\ClubeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::controller(TimeController::class)->group(function () {
-    Route::get('times', 'index');
-    Route::post('times', 'store');
-    Route::get('times/{id}', 'show');
-    Route::put('times/{id}', 'update');
-    Route::delete('times/{id}', 'destroy');
+Route::controller(ClubeController::class)->group(function () {
+    Route::get('clubes', 'index');
+    Route::post('clubes', 'store');
+    Route::get('clubes/{id}', 'show');
+    Route::put('clubes/{id}', 'update');
+    Route::delete('clubes/{id}', 'destroy');
 });
 
 Route::controller(EstadioController::class)->group(function () {

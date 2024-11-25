@@ -13,7 +13,8 @@ class ClubeController extends Controller
      */
     public function index()
     {
-        //
+        $clubes = Clube::all();
+        return response()->json($clubes);
     }
 
     /**
@@ -29,38 +30,41 @@ class ClubeController extends Controller
      */
     public function store(StoreClubeRequest $request)
     {
-        //
+        $dados = $request->validated();
+
+        $clube = Clube::create($dados);
+
+        return response()->json($clube);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Clube $clube)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Clube $clube)
-    {
-        //
+        $clube = Clube::find($id);
+        return response()->json($clube);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateClubeRequest $request, Clube $clube)
+    public function update($id, UpdateClubeRequest $request)
     {
-        //
+
+        $clube = Clube::find($id);
+        $dados = $request->validated();
+        $clube->update($dados);
+
+        return response()->json($clube);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Clube $clube)
+    public function destroy($id)
     {
-        //
+        Clube::destroy($id);
+        return response()->json(['msg' => 'Clube deletado com sucesso']);
     }
 }

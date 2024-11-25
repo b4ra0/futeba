@@ -9,10 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Clube extends Model
 {
-    protected $fillable = ['nome', 'url_brasao', 'fundacao'];
+    protected $fillable = ['nome_completo', 'nome_popular', 'fundacao'];
 
     use HasFactory;
     use SoftDeletes;
-
-
 }
