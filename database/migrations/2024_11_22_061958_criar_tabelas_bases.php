@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string("nome");
             $table->string('sigla', 3);
-            $table->string('brasao_path');
         });
 
         // Tabela Campeonatos
@@ -24,12 +23,13 @@ return new class extends Migration
             $table->id();
             $table->string("nome");
             $table->string('sigla', 3);
-            $table->string('logo_path');
         });
 
         // Tabela rl_pais_campeonato
         Schema::create('pais_campeonato', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_campeonato');
+            $table->unsignedBigInteger('id_pais');
         });
 
         // Tabela edições
@@ -38,6 +38,8 @@ return new class extends Migration
             $table->string('nome');
             $table->year('temporada');
             $table->string('logo_path');
+            $table->unsignedBigInteger('id_campeonato');
+            $table->unsignedBigInteger('id_campeao');
         });
 
         // Tabela fases
@@ -48,11 +50,14 @@ return new class extends Migration
             $table->boolean("decisiva");
             $table->boolean("eliminatoria");
             $table->boolean("ida_e_volta");
+            $table->unsignedBigInteger('id_edicao');
         });
 
         // Tabela rl_edição_clube
         Schema::create('edicao_clube', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_edicao');
+            $table->unsignedBigInteger('id_clube');
         });
 
         // Tabela clubes
@@ -61,12 +66,14 @@ return new class extends Migration
             $table->string("nome_completo");
             $table->string('nome_popular');
             $table->date('fundacao');
-            $table->string('logo_path');
         });
 
         // Tabela rl_estadio_clube
         Schema::create('estadio_clube', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_estadio');
+            $table->unsignedBigInteger('id_clube');
+            $table->boolean('proprietario');
         });
 
         // Tabela estádios
@@ -74,6 +81,7 @@ return new class extends Migration
             $table->id();
             $table->string("nome");
             $table->string("apelido");
+            $table->unsignedBigInteger('id_pais');
         });
 
         // Tabela partidas
@@ -82,12 +90,19 @@ return new class extends Migration
             $table->integer('placar_mandante');
             $table->integer('placar_visitante');
             $table->timestamp('horario');
+            $table->unsignedBigInteger('id_mandante');
+            $table->unsignedBigInteger('id_visitante');
+            $table->unsignedBigInteger('id_estadio');
+            $table->unsignedBigInteger('id_fase');
         });
 
         // Tabela rl_jogador_partida
         Schema::create('jogador_partida', function (Blueprint $table) {
             $table->id();
             $table->integer('camisa');
+            $table->unsignedBigInteger('id_partida');
+            $table->unsignedBigInteger('id_jogador');
+            $table->unsignedBigInteger('id_clube');
         });
 
         // Tabela jogadores
@@ -96,12 +111,15 @@ return new class extends Migration
             $table->string('nome');
             $table->string('apelido');
             $table->date('data_de_nascimento');
-            $table->string('foto_path');
+            $table->enum('posicao', ['goleiro', 'zagueiro', 'lateral', 'volante', 'meia', 'atacante']);
+            $table->unsignedBigInteger('id_pais');
         });
 
         // Tabela rl_clube_jogador
         Schema::create('clube_jogador', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_clube');
+            $table->unsignedBigInteger('id_jogador');
         });
 
         // Tabela gols
@@ -109,6 +127,8 @@ return new class extends Migration
             $table->id();
             $table->integer('minuto');
             $table->enum('tipo', ['cabeca', 'penalti', 'falta', 'chute', 'olimpico', 'contra']);
+            $table->unsignedBigInteger('id_partida');
+            $table->unsignedBigInteger('id_jogador');
         });
 
         // Tabela transferencias
@@ -130,6 +150,8 @@ return new class extends Migration
         // Tabela rl_arbitro_partida
         Schema::create('arbitro_partida', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_arbitro');
+            $table->unsignedBigInteger('id_partida');
             $table->enum('papel', ['principal', 'assistente', 'quarto_arbitro']);
         });
 
@@ -137,52 +159,56 @@ return new class extends Migration
 
         // Criando foreign keys
         Schema::table('pais_campeonato', function (Blueprint $table) {
-            $table->foreignId("id_campeonato")->constrained("campeonatos");
-            $table->foreignId('id_pais')->constrained('paises');
+            $table->foreign("id_campeonato")->references('id')->on("campeonatos");
+            $table->foreign('id_pais')->references('id')->on('paises');
         });
         Schema::table('edicoes', function (Blueprint $table) {
-            $table->foreignId("id_campeonato")->constrained("campeonatos");
-            $table->foreignId("id_campeao")->constrained("clubes");
+            $table->foreign("id_campeonato")->references('id')->on("campeonatos");
+            $table->foreign("id_campeao")->references('id')->on("clubes");
         });
         Schema::table('fases', function (Blueprint $table) {
-            $table->foreignId("id_edicao")->constrained("edicoes");
+            $table->foreign("id_edicao")->references('id')->on("edicoes");
         });
         Schema::table('edicao_clube', function (Blueprint $table) {
-            $table->foreignId("id_edicao")->constrained("edicoes");
-            $table->foreignId("id_clube")->constrained("clubes");
+            $table->foreign("id_edicao")->references('id')->on("edicoes");
+            $table->foreign("id_clube")->references('id')->on("clubes");
         });
         Schema::table('estadios', function (Blueprint $table) {
-            $table->foreignId("id_pais")->constrained("paises");
+            $table->foreign("id_pais")->references('id')->on("paises");
         });
         Schema::table('estadio_clube', function (Blueprint $table) {
-            $table->foreignId("id_estadio")->constrained("estadios");
-            $table->foreignId("id_clube")->constrained("clubes");
+            $table->foreign("id_estadio")->references('id')->on("estadios");
+            $table->foreign("id_clube")->references('id')->on("clubes");
         });
         Schema::table('partidas', function (Blueprint $table) {
-            $table->foreignId('id_mandante')->constrained('clubes');
-            $table->foreignId('id_visitante')->constrained('clubes');
-            $table->foreignId('id_estadio')->constrained('estadios');
-            $table->foreignId('id_fase')->constrained('fases');
+            $table->foreign('id_mandante')->references('id')->on('clubes');
+            $table->foreign('id_visitante')->references('id')->on('clubes');
+            $table->foreign('id_estadio')->references('id')->on('estadios');
+            $table->foreign('id_fase')->references('id')->on('fases');
         });
         Schema::table('jogador_partida', function (Blueprint $table) {
-            $table->foreignId('id_partida')->constrained('partidas');
-            $table->foreignId('id_jogador')->constrained('jogadores');
-            $table->foreignId('id_clube')->constrained('clubes');
+            $table->foreign('id_partida')->references('id')->on('partidas');
+            $table->foreign('id_jogador')->references('id')->on('jogadores');
+            $table->foreign('id_clube')->references('id')->on('clubes');
         });
         Schema::table('jogadores', function (Blueprint $table) {
-            $table->foreignId('id_pais')->constrained('paises');
+            $table->foreign('id_pais')->references('id')->on('paises');
         });
         Schema::table('clube_jogador', function (Blueprint $table) {
-            $table->foreignId('id_clube')->constrained('clubes');
-            $table->foreignId('id_jogador')->constrained('jogadores');
+            $table->foreign('id_clube')->references('id')->on('clubes');
+            $table->foreign('id_jogador')->references('id')->on('jogadores');
         });
         Schema::table('gols', function (Blueprint $table) {
-            $table->foreignId('id_partida')->constrained('partidas');
-            $table->foreignId('id_jogador')->constrained('jogadores');
+            $table->foreign('id_partida')->references('id')->on('partidas');
+            $table->foreign('id_jogador')->references('id')->on('jogadores');
         });
         Schema::table('transferencias', function (Blueprint $table) {
-            $table->foreignId('id_clube_saida')->nullable()->constrained('clubes');
-            $table->foreignId('id_clube_chegada')->nullable()->constrained('clubes');
+            $table->foreign('id_clube_saida')->references('id')->on('clubes');
+            $table->foreign('id_clube_chegada')->references('id')->on('clubes');
+        });
+        Schema::table('arbitro_partida', function (Blueprint $table) {
+            $table->foreign('id_arbitro')->references('id')->on('arbitros');
+            $table->foreign('id_partida')->references('id')->on('partidas');
         });
     }
 
