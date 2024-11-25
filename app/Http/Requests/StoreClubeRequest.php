@@ -11,7 +11,7 @@ class StoreClubeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreClubeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome_completo' => 'required|string',
+            'nome_popular' => 'required|string',
+            'fundacao' => 'required|date',
         ];
     }
 }

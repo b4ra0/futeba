@@ -4,7 +4,7 @@ use App\Http\Controllers\CampeonatoController;
 use App\Http\Controllers\EstadioController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\PartidaController;
-use App\Http\Controllers\TimeController;
+use App\Http\Controllers\ClubeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::controller(TimeController::class)->group(function () {
-    Route::get('times', 'index');
-    Route::post('times', 'store');
-    Route::get('times/{id}', 'show');
-    Route::put('times/{id}', 'update');
-    Route::delete('times/{id}', 'destroy');
+Route::controller(ClubeController::class)->group(function () {
+    Route::get('clubes', 'index');
+    Route::post('clubes', 'store');
+    Route::get('clubes/{id}', 'show');
+    Route::put('clubes/{id}', 'update');
+    Route::delete('clubes/{id}', 'destroy');
 });
 
 Route::controller(EstadioController::class)->group(function () {
@@ -37,11 +37,11 @@ Route::controller(EstadioController::class)->group(function () {
 });
 
 Route::controller(PaisController::class)->group(function () {
-    Route::get('pais', 'index');
-    Route::post('pais', 'store');
-    Route::get('pais/{id}', 'show');
-    Route::put('pais/{id}', 'update');
-    Route::delete('pais/{id}', 'destroy');
+    Route::get('paises', 'index');
+    Route::post('paises', 'store');
+    Route::get('paises/{id}', 'show');
+    Route::put('paises/{id}', 'update');
+    Route::delete('paises/{id}', 'destroy');
 });
 
 Route::controller(PartidaController::class)->group(function () {

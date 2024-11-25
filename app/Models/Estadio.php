@@ -13,17 +13,16 @@ class Estadio extends Model
 
     protected $fillable = [
         'nome',
-        'cidade',
+        'apelido',
         'id_pais',
-        'capacidade'
     ];
     public function pais()
     {
         return $this->belongsTo(Pais::class, 'id_pais');
     }
 
-    public function times()
+    public function clubes()
     {
-        return $this->belongsToMany(Time::class, 'estadio_time', 'id_estadio', 'id_time');
+        return $this->belongsToMany(Clube::class, 'estadio_clube', 'id_estadio', 'id_clube');
     }
 }
