@@ -20,7 +20,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ vars.image_name }}:latest ./.dockerfile/nginx
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ vars.image_name }}:latest .docker/nginx/Dockerfile
         docker tag ${{ secrets.DOCKER_USERNAME }}/${{ vars.image_name }}:latest ${{ secrets.DOCKER_USERNAME }}/${{ vars.image_name }}:$(date +'%Y%m%d%H%M%S')
         docker push ${{ secrets.DOCKER_USERNAME }}/${{ vars.image_name }}:latest
         docker push ${{ secrets.DOCKER_USERNAME }}/${{ vars.image_name }}:$(date +'%Y%m%d%H%M%S')
